@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -75,7 +76,7 @@ namespace OfficeManagement
         public static bool CheckSuperAdmin()
         {
             //check that user = superAdmin
-            Console.WriteLine("user ID");
+            Console.WriteLine("Super Admin ID");
             int userID = Int32.Parse(Console.ReadLine());
 
             foreach(User item in userList)
@@ -135,6 +136,35 @@ namespace OfficeManagement
             userList.Add(user);
             Console.WriteLine("number of users in total: " + userList.Count());
             Console.WriteLine("new user added");
+
+            UploadToTxt();
+        }
+
+        public static void UploadToTxt()
+        {
+            FileStream fs = new FileStream("UserDetails.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            StreamWriter sw = new StreamWriter(fs);
+
+            foreach (User user  in userList)
+            {
+                if (user.Task == null)
+                {
+                    sw.WriteLine(user.Id + "," + user.Position);
+                }
+                else if (user.Report == null)
+                {
+                    sw.WriteLine(user.Id + "," + user.Position + "," + user.Task);
+                }
+                else
+                {
+                    sw.WriteLine(user.Id + "," + user.Position + "," + user.Task + "," + user.Report);
+                }
+                
+            }
+
+            sw.Flush();
+            sw.Close();
+            fs.Close();
 
         }
 
