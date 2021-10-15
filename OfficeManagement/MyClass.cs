@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace OfficeManagement
 {
+    /// <summary>
+    /// alternative approach
+    /// A) put functions in the inherited class. Functions inheritance 
+    /// B) use interface. 3 interface each for a User, Admin, SuperAdmin
+    /// </summary>
     enum Position
     {
         User, Admin, SuperAdmin
@@ -26,7 +31,7 @@ namespace OfficeManagement
 
     }
 
-    class SuperAdmin : User
+    class SuperAdmin : Admin
     {
 
     }

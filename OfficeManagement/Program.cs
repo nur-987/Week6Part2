@@ -108,7 +108,6 @@ namespace OfficeManagement
             return false;
 
         }
-
         public static void AddUser()
         {
             Console.WriteLine("-------Adding User-------");
